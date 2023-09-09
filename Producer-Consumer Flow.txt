@@ -1,0 +1,43 @@
+1) Open Source: Apache Kafka
+2) Commercial Distribution:Confluent Kafka
+3) Managed Kafka service: confluent and AWS
+
+Producer-consumer Flow:
+1. Start zookeeper
+2. Start kafka server/ Broker
+3. Create a Topic
+
+Partition count  |  Replication Factor
+
+1. Kafka_2.13-3.5.1 
+   Open three terminal
+
+2. Start zookeeper
+   bin\windows\zookeeper-server-start.bat config\zookeeper.properties
+   Default port:2181
+
+3. Start Kafka Server:
+   bin\windows\kafka-server-start.bat config\server.properties
+   Default Port:9092
+
+4. Create a topic:
+   bin\windows\kafka-topics.bat --bootstrap-server localhost:9092 --create --topic demo-topic --partitions 3 --replication-factor 1
+   bin\windows\kafka-topics.bat --create --topic my-topic --bootstrap-server localhost:9092 --partitions 3 
+
+5. List of Topic:
+   bin\windows\kafka-topics.bat --bootstrap-server localhost:9092 --list
+
+6. Describe:
+   bin\windows\kafka-topics.bat --bootstrap-server localhost:9092 --describe --topic demo(demo is topic_name)
+
+7. Producer console:
+   bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic demo2
+
+8. Consumer console:
+   bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic demo2 --from-beginning
+
+9. Delete a Topic:
+   bin\windows\kafka-topics.bat --zookeeper localhost:2181 --delete --topic my-topic
+
+Note:
+CTRL + C : Terminate Producer
